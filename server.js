@@ -45,6 +45,12 @@ app.get("/todos/create", (req, res) => {
   res.render('todolist/create.pug')
 });
 
+app.get('/todos/:id/delete',(req,res)=>{
+  var id = req.params.id;
+  db.get('todos').remove({ id: id }).write();
+  res.redirect('/todos');
+});
+
 app.post("/todos/create",(req,res)=>{
   var id = shortid.generate();
   db.get('todos').push({id: id, text: req.body.name}).write();
