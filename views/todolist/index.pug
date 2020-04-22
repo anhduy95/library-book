@@ -1,0 +1,11 @@
+h1 To Do List
+
+a(href='/todos/create') New
+
+form(action='/todos/search', method='GET', value= `${input}`)
+  input(type='text', name="q")
+  button Search
+
+ul
+  each item in list
+    li= item
