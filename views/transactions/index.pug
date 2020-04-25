@@ -1,0 +1,8 @@
+h1 All Transactions
+a(href="/transactions/create") Add Transaction
+ul
+  each item in trans
+    li
+      span= item.userId
+      span &nbsp
+      span= item.bookId
