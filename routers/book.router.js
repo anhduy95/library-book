@@ -8,7 +8,7 @@ router.get('/',(req,res)=>{
    res.render('books/index.pug',{
      books: db.get('books').value()
    })
- })
+ });
 router.get('/create',(req,res)=>{
   res.render('books/create.pug');
 });

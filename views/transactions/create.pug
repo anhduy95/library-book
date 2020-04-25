@@ -1,0 +1,12 @@
+h2 New Transactions
+form(action= "/transactions/create", method='POST')
+  label User:
+  select
+    each user in users
+      option= user.name
+  span &nbsp
+  label Book: 
+  select
+    each item in books
+      option= item.title    
+  button Create
