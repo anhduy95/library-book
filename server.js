@@ -1,62 +1,43 @@
 const express = require("express");
 const app = express();
+var bodyParser = require('body-parser');
+var userRouter = require('./routers/user.route');
 
-const bodyParser = require('body-parser');
+var db = require('./db.js');
 
 const shortid = require('shortid');
 
-const low = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
+app.use(bodyParser.urlencoded({ extended: false }));
 
-const adapter = new FileSync('db.json');
-const db = low(adapter);
+app.set('view engine','pug');
+app.set('views','./views');
 
-db.defaults({ todos:[] })
-  .write();
+app.use(express.static("public"));
 
+app.use('/users', userRouter);
 
-app.set("view engine", "pug");
-app.set("views", "./views");
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.get("/", (request, response) => {
-  response.render("index.pug");
+app.get("/", (req, res) => {
+  res.render('index.pug');
 });
-
-app.get("/todos", (request, response) => {
-  response.render("./todolist/index.pug", {
-    list: db.get('todos').value()
-  });
+ app.get('/list',(req,res)=>{
+   res.render('books/index.pug',{
+     books: db.get('books').value()
+   })
+ })
+app.get('/create',(req,res)=>{
+  res.render('books/create.pug');
 });
-
-app.get("/todos/search", (request, response) => {
-  var q = request.query.q;
-  var matchedList = db.get('todos').value().filter(function(item) {
-    return item.toLowerCase().indexOf(q.toLowerCase()) !== -1;
-  });
-  response.render("todolist/index.pug", {
-    list: matchedList,
-    input: q
-  });
-});
-
-app.get("/todos/create", (req, res) => {
-  res.render('todolist/create.pug')
-});
-
-app.get('/todos/:id/delete',(req,res)=>{
-  var id = req.params.id;
-  db.get('todos').remove({ id: id }).write();
-  res.redirect('/todos');
-});
-
-app.post("/todos/create",(req,res)=>{
+app.post("/books/create",(req,res)=>{
   var id = shortid.generate();
-  db.get('todos').push({id: id, text: req.body.name}).write();
+  db.get('books').push({id: id, title: req.body.name, des: req.body.description}).write();
   
-  res.redirect('/todos')
+  res.redirect('/list')
 });
+app.get('/books/:id/delete',(req,res)=>{
+  var id = req.params.id;
+  db.get('books').remove({id:id}).write();
+  res.redirect('/list');
+})
 
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);

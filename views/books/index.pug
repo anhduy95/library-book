@@ -1,0 +1,8 @@
+h1 All Book
+a(href="/create") Add book
+ul
+  each item in books
+    li
+      span= item.title
+      span &nbsp
+      a(href="/books/" + item.id + "/delete") Delete
