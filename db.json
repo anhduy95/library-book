@@ -39,5 +39,16 @@
       "name": "Trâm"
     }
   ],
-  "transactions": []
+  "transactions": [
+    {
+      "id": "CBASwaC_l",
+      "userId": "Duy",
+      "bookId": "Rich Dad, Poor Dad"
+    },
+    {
+      "id": "STU18f8gY",
+      "userId": "Dũng",
+      "bookId": "Sapiens"
+    }
+  ]
 }

@@ -16,4 +16,11 @@ router.get('/create',(req,res)=>{
   })
 })
 
+router.post("/create",(req,res)=>{
+  var id = shortid.generate();
+  db.get('transactions').push({id:id,...req.body}).write();
+  
+  res.redirect('/transactions')
+});
+
 module.exports = router;
