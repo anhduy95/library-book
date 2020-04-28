@@ -14,7 +14,12 @@ module.exports.create = function(req,res){
 };
 module.exports.postCreate = function(req,res){
   var id = shortid.generate();
-  db.get('transactions').push({id:id,...req.body}).write();
+  db.get('transactions').push({id:id,isCompleted:false,...req.body}).write();
   
   res.redirect('/transactions')
+};
+module.exports.complete = function(req,res){
+  var postId = req.params.id;
+  db.get('transactions').find({id:postId}).assign({isCompleted:true}).write();
+  res.redirect('/transactions');
 };

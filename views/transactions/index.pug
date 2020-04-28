@@ -6,3 +6,7 @@ ul
       span= item.userId
       span : &nbsp
       span= item.bookId
+      span &nbsp
+      span= "- Status: " + item.isCompleted
+      span &nbsp
+      a(href="/transactions/" + item.id + "/complete") Hoàn thành
