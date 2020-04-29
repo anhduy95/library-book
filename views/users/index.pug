@@ -1,8 +1,10 @@
-h1 List Users
-a(href="/users/add") Add user
-ul
-  each item in listUsers
-    li
-      span= item.name
-      span &nbsp
-      a(href="/users/" + item.id + "/delete") Delete
+extends ../layout/header.pug
+block content
+  h2 List Users
+  a(href="/users/add") Add user
+  ul
+    each item in listUsers
+      li
+        span= item.name
+        span &nbsp
+        a(href="/users/" + item.id + "/delete") Delete

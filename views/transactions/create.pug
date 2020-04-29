@@ -1,12 +1,14 @@
-h2 New Transactions
-form(action= "/transactions/create", method='POST')
-  label User:
-  select(name="userId")
-    each user in users
-      option= user.name
-  span &nbsp
-  label Book: 
-  select(name="bookId")
-    each item in books
-      option= item.title    
-  button Create
+extends ../layout/header.pug
+block content
+  h2 New Transactions
+  form(action= "/transactions/create", method='POST')
+    label User:
+    select(name="userId")
+      each user in users
+        option= user.name
+    span &nbsp
+    label Book: 
+    select(name="bookId")
+      each item in books
+        option= item.title    
+    button Create

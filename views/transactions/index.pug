@@ -1,12 +1,14 @@
-h1 All Transactions
-a(href="/transactions/create") Add Transaction
-ul
-  each item in trans
-    li
-      span= item.userId
-      span : &nbsp
-      span= item.bookId
-      span &nbsp
-      span= "- Status: " + item.isCompleted
-      span &nbsp
-      a(href="/transactions/" + item.id + "/complete") Hoàn thành
+extends ../layout/header.pug
+block content
+  h2 All Transactions
+  a(href="/transactions/create") Add Transaction
+  ul
+    each item in trans
+      li
+        span= item.userId
+        span : &nbsp
+        span= item.bookId
+        span &nbsp
+        span= "- Status: " + item.isCompleted
+        span &nbsp
+        a(href="/transactions/" + item.id + "/complete") Hoàn thành
