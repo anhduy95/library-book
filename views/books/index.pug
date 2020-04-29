@@ -1,8 +1,10 @@
-h1 All Book
-a(href="/books/create") Add book
-ul
-  each item in books
-    li
-      span= item.title
-      span &nbsp
-      a(href="/books/" + item.id + "/delete") Delete
+extends ../layout/header.pug
+block content
+  h2 All Book
+  a(href="/books/create") Add book
+  ul
+    each item in books
+      li
+        span= item.title
+        span &nbsp
+        a(href="/books/" + item.id + "/delete") Delete

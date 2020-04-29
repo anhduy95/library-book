@@ -1,0 +1,14 @@
+html
+  head
+    link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css")
+  body
+    div(class="d-flex justify-content-between")
+      h1(class="ml-2 mt-2 d-flex") Library
+      div(class='d-flex flex-row  mt-2 bd-highlight')
+        div(class="p-2 bd-highlight")
+          a(href='/books',class="btn btn-outline-secondary") List books
+        div(class="p-2 bd-highlight")
+          a(href='/users',class="btn btn-outline-secondary") Users
+        div(class="p-2 bd-highlight")
+          a(href='/transactions',class="btn btn-outline-secondary") Transactions
+    block content
