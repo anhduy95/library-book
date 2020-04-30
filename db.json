@@ -65,9 +65,15 @@
     },
     {
       "id": "8ExkTB3GI",
-      "isCompleted": false,
+      "isCompleted": true,
       "userId": "Duy",
       "bookId": "Homo Deus"
+    },
+    {
+      "id": "IMLfW83vi",
+      "isCompleted": true,
+      "userId": "Duy",
+      "bookId": "Ngày xưa có một con bò"
     }
   ]
 }

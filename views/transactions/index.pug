@@ -2,6 +2,10 @@ extends ../layout/header.pug
 block content
   h2 All Transactions
   a(href="/transactions/create") Add Transaction
+  div(class="d-flex")
+    if errors
+      each error in errors
+        .alert.alert-danger= error
   ul
     each item in trans
       li
@@ -11,4 +15,4 @@ block content
         span &nbsp
         span= "- Status: " + item.isCompleted
         span &nbsp
-        a(href="/transactions/" + item.id + "/complete") Hoàn thành
+        a(href="/transactions/" + item.id) Hoàn thành

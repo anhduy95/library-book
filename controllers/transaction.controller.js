@@ -18,6 +18,21 @@ module.exports.postCreate = function(req,res){
   
   res.redirect('/transactions')
 };
+module.exports.checkId = function(req,res){
+  var inputId = req.params.id;
+  var dbId = db.get('transactions').value().map(function(item){return item.id});
+  var errors =[];
+  if (dbId.includes(inputId)){
+    res.redirect('/transactions/'+inputId+'/complete');
+  } else {
+    errors.push("Something Wrong!");
+    res.render('transactions/index.pug',{
+      errors: errors,
+      trans: db.get('transactions').value()
+    })
+  }
+};
+
 module.exports.complete = function(req,res){
   var postId = req.params.id;
   db.get('transactions').find({id:postId}).assign({isCompleted:true}).write();
