@@ -2,6 +2,9 @@ extends ../layout/header.pug
 block content
   h2 List Users
   a(href="/users/add") Add user
+  if errors
+    each error in errors
+      .alert.alert-danger= error
   ul
     each item in listUsers
       li
