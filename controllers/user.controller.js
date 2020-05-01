@@ -11,19 +11,8 @@ module.exports.add = function(req,res){
 };
 module.exports.create = function(req,res){
   var id = shortid.generate();
-  var inputName = req.body.name;
-  var errors = [];
-  if (inputName.length < 30){
-    db.get('users').push({id: id, name: inputName}).write();
-    res.redirect('/users')  
-  } else {
-    errors.push("Tên quá dài")
-    res.render('users/index.pug',{
-      listUsers: db.get('users').value(),
-      errors: errors
-   })
-  }
-  
+  db.get('users').push({id: id, name: req.body.name}).write();
+    res.redirect('/users') 
 };
 module.exports.delete = function(req,res){
   var id = req.params.id;

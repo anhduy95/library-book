@@ -74,6 +74,12 @@
       "isCompleted": true,
       "userId": "Duy",
       "bookId": "Ngày xưa có một con bò"
+    },
+    {
+      "id": "jJwHMLxWb",
+      "isCompleted": true,
+      "userId": "Trâm",
+      "bookId": "Rich Dad, Poor Dad"
     }
   ]
 }
