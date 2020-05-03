@@ -29,19 +29,27 @@
   "users": [
     {
       "id": "jnlmtD31v",
-      "name": "Duy"
+      "name": "Duy",
+      "email": "buianhduy76@gmail.com",
+      "password": "faster"
     },
     {
       "id": "uboHH8S4r",
-      "name": "Dũng"
+      "name": "Dũng",
+      "email": "dung@gmail.com",
+      "password": "123456"
     },
     {
       "id": "YUj7SvZ7G",
-      "name": "Cường"
+      "name": "Cường",
+      "email": "cuong@gmail.com",
+      "password": "123456"
     },
     {
       "id": "TBQJ17vUt",
-      "name": "Trâm"
+      "name": "Trâm",
+      "email": "tram@gmail.com",
+      "password": "123456"
     }
   ],
   "transactions": [
