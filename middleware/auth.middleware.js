@@ -5,7 +5,7 @@ module.exports.auth = function(req,res,next){
     res.redirect('/login');
     return
   }
-  var user = db.get('users').find({userId:req.cookies.userId}).value();
+  var user = db.get('users').find({id:req.cookies.userId}).value();
   if(!user){
     res.redirect('/login');
     return

@@ -8,7 +8,8 @@ var bookRouter = require('./routers/book.router');
 var transactionRouter = require('./routers/transaction.router');
 var loginRouter = require('./routers/login.router');
 
-var middleware = require('./middleware/auth.middleware');
+var middlewareAuth = require('./middleware/auth.middleware');
+var middlewareAdmin = require('./middleware/isAdmin.middleware');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static("public"));
@@ -29,11 +30,11 @@ function cookieCount(req,res,next){
   next();
 }
 
-app.use('/users',middleware.auth, cookieCount, userRouter);
+app.use('/users',middlewareAuth.auth, cookieCount, userRouter);
 
 app.use('/books', cookieCount, bookRouter);
 
-app.use('/transactions',middleware.auth, cookieCount, transactionRouter);
+app.use('/transactions',middlewareAuth.auth, cookieCount, transactionRouter);
 
 app.use('/login', loginRouter);
 

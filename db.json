@@ -29,24 +29,28 @@
   "users": [
     {
       "id": "jnlmtD31v",
+      "isAdmin": true,
       "name": "Duy",
       "email": "buianhduy76@gmail.com",
       "password": "faster"
     },
     {
       "id": "uboHH8S4r",
+      "isAdmin": false,
       "name": "Dũng",
       "email": "dung@gmail.com",
       "password": "123456"
     },
     {
       "id": "YUj7SvZ7G",
+      "isAdmin": false,
       "name": "Cường",
       "email": "cuong@gmail.com",
       "password": "123456"
     },
     {
       "id": "TBQJ17vUt",
+      "isAdmin": false,
       "name": "Trâm",
       "email": "tram@gmail.com",
       "password": "123456"

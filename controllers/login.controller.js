@@ -9,6 +9,7 @@ module.exports.postLogin = function(req,res,next){
   var password = req.body.password;
   
   var user = db.get('users').find({email:email}).value();
+  console.log(user);
   if (!user){
     res.render('login/index',{
       errors: [
@@ -27,14 +28,13 @@ module.exports.postLogin = function(req,res,next){
     })
     return;
   }
-  next();
+  res.cookie('userId',user.id);
+  res.redirect('/');
 };
-module.exports.loginTransaction = function(req,res){
-  var email = req.body.email;
-  var name = db.get('users').find({email:email}).value();
-  var tran = db.get('transactions').filter({userId:name.name}).value();
-  res.cookie('userID',name.userId);
-  res.render('transactions/index',{
-    trans: tran
-  })
-};
+// module.exports.loginTransaction = function(req,res){
+//   var email = req.body.email;
+//   var name = db.get('users').find({email:email}).value();
+//   var tran = db.get('transactions').filter({userId:name.name}).value();
+//   res.cookie('userID',name.userId);
+//   res.redirect('/');
+// };
