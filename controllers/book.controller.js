@@ -2,10 +2,10 @@ const shortid = require('shortid');
 var db = require('../db.js');
 
 module.exports.index = function(req,res){
-   res.render('books/index.pug',{
-     books: db.get('books').value()
-   })
- };
+  res.render('books/index.pug',{
+    books: db.get('books').value()
+  })
+};
 module.exports.create = function(req,res){
   res.render('books/create.pug');
 };
