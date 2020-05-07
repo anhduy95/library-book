@@ -29,27 +29,35 @@
   "users": [
     {
       "id": "jnlmtD31v",
+      "isAdmin": true,
       "name": "Duy",
       "email": "buianhduy76@gmail.com",
-      "password": "faster"
+      "password": "21232f297a57a5a743894a0e4a801fc3",
+      "wrongLoginCount": 0
     },
     {
       "id": "uboHH8S4r",
+      "isAdmin": false,
       "name": "Dũng",
       "email": "dung@gmail.com",
-      "password": "123456"
+      "password": "$2b$09$1D9xjQz3ZSh.cssNm4ST4ubsZyXBpeMpESdm0O.aXQD.4fgFjJF1K",
+      "wrongLoginCount": 0
     },
     {
       "id": "YUj7SvZ7G",
+      "isAdmin": false,
       "name": "Cường",
       "email": "cuong@gmail.com",
-      "password": "123456"
+      "password": "$2b$09$1D9xjQz3ZSh.cssNm4ST4ubsZyXBpeMpESdm0O.aXQD.4fgFjJF1K",
+      "wrongLoginCount": 0
     },
     {
       "id": "TBQJ17vUt",
+      "isAdmin": false,
       "name": "Trâm",
       "email": "tram@gmail.com",
-      "password": "123456"
+      "password": "$2b$09$1D9xjQz3ZSh.cssNm4ST4ubsZyXBpeMpESdm0O.aXQD.4fgFjJF1K",
+      "wrongLoginCount": 0
     }
   ],
   "transactions": [
