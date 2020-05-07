@@ -13,7 +13,7 @@ var middlewareAdmin = require('./middleware/isAdmin.middleware');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static("public"));
-app.use(cookieParser());
+app.use(cookieParser("anhduy76"));
 
 app.set('view engine','pug');
 app.set('views','./views');

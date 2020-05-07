@@ -33,7 +33,9 @@ module.exports.postLogin = function(req,res,next){
   bcrypt.compare(password, user.password, function(err, result) {
     if(result == true) {
       db.get('users').find({email:email}).assign({wrongLoginCount:0}).value();
-      res.cookie('userId',user.id);
+      res.cookie('userId',user.id,{
+        signed: true
+      });
       res.redirect('/');
     } else {
       numberLogin += 1;
