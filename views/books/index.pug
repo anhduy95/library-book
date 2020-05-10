@@ -2,9 +2,24 @@ extends ../layout/header.pug
 block content
   h2 All Book
   a(href="/books/create") Add book
-  ul
+  .container(style='max-width: 1200px')
     each item in books
-      li
-        span= item.title
-        span &nbsp
-        a(href="/books/" + item.id + "/delete") Delete
+      div(class="d-inline-flex")
+        .card(style='width: 18rem;')
+          img.card-img-top(src=item.image, alt='book cover')
+          .card-body
+            h5.card-title= item.title
+            p.card-text= item.description
+            a.btn.btn-primary(href='#') Add to rent
+    nav(aria-label='Page navigation example')
+      ul.pagination.justify-content-end
+        li.page-item
+          a.page-link(href=`books?page=${parseInt(page)-3}`) Previous
+        li.page-item
+          a.page-link(href=`books?page=${parseInt(page)-1}`)= page - 1
+        li.page-item
+          a.page-link(aria-disabled='true')= page
+        li.page-item
+          a.page-link(href=`books?page=${parseInt(page)+1}`)= page + 1
+        li.page-item
+          a.page-link(href=`books?page=${parseInt(page)+3}`) Next
