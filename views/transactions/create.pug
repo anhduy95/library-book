@@ -1,14 +1,18 @@
-extends ../layout/header.pug
-block content
-  h2 New Transactions
-  form(action= "/transactions/create", method='POST')
-    label User:
-    select(name="userId")
-      each user in users
-        option= user.name
-    span &nbsp
-    label Book: 
-    select(name="bookId")
-      each item in books
-        option= item.title    
-    button Create
+extends ../layouts/common
+
+block content  
+  h1 Create a new transaction
+
+  form.col-sm-3(action="/transactions/create", method="POST")
+    .form-group
+      lable User name:
+      select.form-control(name="userId")
+        each user in users
+          option(value=user.userId) #{user.name}
+    .form-group
+      lable Book title:
+      select.form-control(name="bookId")
+        each book in books
+          option(value=book.bookId) #{book.title}
+
+    button.btn.btn-primary create

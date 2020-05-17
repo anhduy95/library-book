@@ -1,47 +1,61 @@
+// server.js
+// where your node app starts
 
+// we've started you off with Express (https://expressjs.com/)
+// but feel free to use whatever libraries or frameworks you'd like through `package.json`.
+require('dotenv').config();
 
-const express = require("express");
-const app = express();
-const bodyParser = require('body-parser');
+var express = require("express");
+var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var mongoose = require('mongoose');
 
-var userRouter = require('./routers/user.router');
-var bookRouter = require('./routers/book.router');
-var transactionRouter = require('./routers/transaction.router');
-var loginRouter = require('./routers/login.router');
+mongoose.set("useUnifiedTopology", true);
+mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true}); 
 
-var middlewareAuth = require('./middleware/auth.middleware');
-var middlewareAdmin = require('./middleware/isAdmin.middleware');
+var userRoute = require('./routes/user.route');
+var bookRoute = require('./routes/book.route');
+var transactionRoute = require('./routes/transaction.route');
+var authRoute = require('./routes/auth.route');
+var cartRoute = require('./routes/cart.route');
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static("public"));
-app.use(cookieParser("anhduy76"));
+var authMiddleware = require('./middlewares/auth.middleware');
+var sessionMiddleware = require('./middlewares/session.middleware');
 
-app.set('view engine','pug');
-app.set('views','./views');
+var app = express();
 
-app.get('/',(req,res)=>{
-  res.cookie("Duy",1234);
-  res.render('index.pug');
+app.set('view engine', 'pug');
+app.set('views', './views');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+app.use(cookieParser(process.env.SESSION_SECRET));
+app.use(sessionMiddleware);
+
+app.use(express.static('public'));
+
+app.get('/', function(req, res) {
+  res.render('index');
 });
 
-var count=0;
-function cookieCount(req,res,next){
-  count++;
-  console.log(req.cookies,":",count);
-  next();
-}
+//book
+app.use('/books', bookRoute);
 
-app.use('/users',middlewareAuth.auth, cookieCount, userRouter);
+//user
+app.use('/users', authMiddleware.requireAuth,userRoute);
 
-app.use('/books', cookieCount, bookRouter);
+//transaction
+app.use('/transactions', authMiddleware.requireAuth, transactionRoute);
 
-app.use('/transactions',middlewareAuth.auth, cookieCount, transactionRouter);
+//login
+app.use('/auth', authRoute);
 
-app.use('/login', loginRouter);
+//cart
+app.use('/cart', cartRoute);
 
-
-
+// listen for requests :)
 const listener = app.listen(process.env.PORT, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
